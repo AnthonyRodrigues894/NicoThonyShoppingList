@@ -1,0 +1,16 @@
+Configurar o git:
+git config --global user.name AnthonyRodrigues894
+git config --global user.email anthonyserrano894@gmail.com
+
+criar o projeto ( so usa quando cria dps nunca mais):
+npx create-expo-app@latest NicoThonyShoppingList  --template blank
+
+executar o projeto:
+cd NicoThonyShoppingList
+npx expo start 
+
+instala um pacote web:
+npx expo install react-dom react-native-web @expo/metro-runtime
+
+instalando pacote 
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
