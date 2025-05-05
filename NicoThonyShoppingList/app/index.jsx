@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
   button: {
-    possition: 'absolute',
+    position: 'absolute',
     backgroundColor: '#000',
     bottom: '10%',
     alignSelf: 'center',
     borderRadius: 50,
     paddingVertical: 15,
-    width: '60%',
+    width: '50%',
     textAlign: 'center',
   },
   buttonText: {
