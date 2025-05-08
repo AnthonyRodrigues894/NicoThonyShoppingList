@@ -7,7 +7,7 @@ npx create-expo-app@latest NicoThonyShoppingList  --template blank
 
 executar o projeto:
 cd NicoThonyShoppingList
-npx expo start 
+npx expo start --localhost --android
 
 instala um pacote web:
 npx expo install react-dom react-native-web @expo/metro-runtime
