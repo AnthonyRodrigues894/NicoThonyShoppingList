@@ -12,7 +12,7 @@ export default function Home() {
       Alert.alert(
         'ocorreu um problema :(',
         'Por favor, informe o nome do produto'
-      )
+      );
     } else {
       const newItem = {
         id: Date.now().toString(),
@@ -24,6 +24,61 @@ export default function Home() {
     }
   }
 
+  const markItembought = itemId => {
+    const newItems =items.map((item) => {
+      if (item.id == itemId){
+        return { ...item, bought: true}
+      }
+      return item;
+    });
+    setItems(newItems);
+  }
+
+  const unmarkItembought = itemId => {
+    const newItems =items.map((item) => {
+      if (item.id == itemId){
+        return { ...item, bought: false}
+      }
+      return item;
+    });
+    setItems(newItems);
+  }
+
+  const removeItem = itemId => {
+    Alert.alert(
+      'excluir produto?', 'confirma a exclusâo deste produto?',
+      [
+        {
+          text: 'sim', onPress: () => {
+            const newItems = items.filter(item => item.id != itemId);
+            setItems(newItems);
+          }
+        },
+        {
+          text: 'Cancelar', style: 'cancel'
+        }          
+      ]
+    );
+  }
+
+
+
+  const removeAll = () => {
+    Alert.alert(
+      'Limpar lista?', 'Confirmar a exclusão de todos os produtos?',
+      [
+        {
+          text: 'Sim',
+          onPress: () => { setItems([])}
+        },
+        {
+          text: 'Cancelar', style: 'cancel'
+        }
+      ]
+    )
+  }
+
+
   return (
     <SafeAreaView style={{ flex: 1}}>
       <ImageBackground
@@ -33,7 +88,7 @@ export default function Home() {
       >
         <View style={styles.header}>
           <Text style={styles.tittle}>Lista de Produtos</Text>
-          <Ionicons name="trash" size={32} color="#fff" />
+          <Ionicons name="trash" size={32} color="#fff" onPress={removeAll} />
         </View>
 
         <FlatList 
