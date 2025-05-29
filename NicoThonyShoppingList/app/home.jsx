@@ -1,11 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Alert, FlatList, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import ItemList from '../components/ItemList';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home() {
   const [textInput, setTextInput] = useState('');
   const [items, setItems] = useState([]);
+  useEffect(() => {
+    getItemsFromDevice();
+  }, [])
+
+  useEffect(() => {
+    saveItemsToDevice();
+  }, [items])
+
+  const getItemsFromDevice = async () => {
+    try {
+      const itemsMemory = await AsyncStorage.getItem('NicoThonyShoppingList');
+      if (itemsMemory != null)
+      setItems(JSON.parse(itemsMemory))
+    } catch (error) {
+      console.log(`Erro: ${error}`)
+    }
+  }
+
+  const saveItemsToDevice = async () => {
+    try{
+      const itemJson = JSON.stringify(items);
+      await AsyncStorage.setItem('NicoThonyShoppingList', itemJson);
+    }catch (error) {
+      console.log(`Erro: ${error}`)
+    }
+  }
 
   const addItem = () => {
     if (textInput== '') {
